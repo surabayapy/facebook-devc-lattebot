@@ -1,0 +1,1 @@
+web: gunicorn latte.wsgi --log-file -

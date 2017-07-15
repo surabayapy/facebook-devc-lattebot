@@ -1,0 +1,7 @@
+{
+  "name": "Facebook DevC LatteBot",
+  "description": "latte Bot with Baka framework",
+  "image": "heroku/python",
+  "repository": "",
+  "keywords": ["python", "baka", "facebook", "messenger bot", "chatbot" ]
+}
