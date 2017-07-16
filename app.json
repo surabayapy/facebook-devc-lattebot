@@ -3,5 +3,6 @@
   "description": "latte Bot with Baka framework",
   "image": "heroku/python",
   "repository": "",
-  "keywords": ["python", "baka", "facebook", "messenger bot", "chatbot" ]
+  "keywords": ["python", "baka", "facebook", "messenger bot", "chatbot" ],
+  "addons": [ "heroku-postgresql" ]
 }
