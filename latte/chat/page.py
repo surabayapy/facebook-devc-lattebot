@@ -94,7 +94,9 @@ class Page(object):
     def show_starting_button(self, payload):
         if not payload or not isinstance(payload, str):
             raise ValueError('show_starting_button payload harus string')
-
+        log.info(json.dumps({
+            'get_started': [{'payload': payload}]
+        }))
         self._send_profile_settings(json.dumps({
             'get_started': [{'payload': payload}]
         }))
