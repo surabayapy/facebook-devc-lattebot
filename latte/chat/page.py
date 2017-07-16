@@ -80,6 +80,8 @@ class Page(object):
         if r.status_code != OK:
             log.error(r.text)
 
+        log.info(r.text)
+
     def greeting(self, text):
         if not text or not isinstance(text, str):
             raise ValueError('greeting text pesan harus string')
@@ -113,10 +115,13 @@ class Page(object):
         log.info(json.dumps(buttons))
 
         self._send_profile_settings(json.dumps({
-            "locale": "default",
-            "composer_input_disabled": False,
-            "call_to_actions": buttons
-        }))
+            "persistent_menu": [
+                {
+                    "locale": "default",
+                    "composer_input_disabled": False,
+                    "call_to_actions": buttons
+                }
+            ]}))
 
     def hide_persistent_menu(self):
         self._send_profile_settings(json.dumps({
