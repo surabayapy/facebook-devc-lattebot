@@ -24,7 +24,7 @@ settings = app.config.registry.settings
 
 page = Page(settings.get('access_token'))
 page.greeting('Hai {{user_first_name}}, bagaimana kabar kamu?!. Mau tau tentang Surabaya.py')
-page.show_starting_button('USER_DEFINED_PAYLOAD')
+page.show_starting_button('GET_STARTED_PAYLOAD')
 page.show_persistent_menu([
     {
         "locale": "default",
