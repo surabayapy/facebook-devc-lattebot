@@ -27,23 +27,23 @@ page.greeting('Hai {{user_first_name}}, bagaimana kabar kamu?!. Mau tau tentang 
 page.show_starting_button('USER_DEFINED_PAYLOAD')
 page.show_persistent_menu([
     {
-        "title": "My Account",
+        "title": "Coffee Menu",
         "type": "nested",
         "call_to_actions": [
             {
-                "title": "Pay Bill",
+                "title": "Cappuccino",
                 "type": "postback",
-                "payload": "PAYBILL_PAYLOAD"
+                "payload": "CAPPUCCINO_PAYLOAD"
             },
             {
-                "title": "History",
+                "title": "Latte",
                 "type": "postback",
-                "payload": "HISTORY_PAYLOAD"
+                "payload": "LATTE_PAYLOAD"
             },
             {
-                "title": "Contact Info",
+                "title": "Mochaccino",
                 "type": "postback",
-                "payload": "CONTACT_INFO_PAYLOAD"
+                "payload": "MOCHACCINO_PAYLOAD"
             }
         ]
     },
@@ -68,7 +68,7 @@ def validate(_):
     if _.params.get('hub.mode', '') == 'subscribe' and _.params.get('hub.verify_token', '') \
             == settings.get('verify_token'):
 
-        print("Validating webhook")
+        log.info("Validating webhook")
 
         response.status_code = 200
         return int(_.params.get('hub.challenge', ''))
@@ -102,18 +102,12 @@ def received_message(event):
              % (sender_id, recipient_id, time_of_message))
     log.info(message)
 
-    seq = message.get("seq", 0)
-    message_id = message.get("mid")
-    app_id = message.get("app_id")
-    metadata = message.get("metadata")
-
-    message_text = message.get("text")
-    message_attachments = message.get("attachments")
-
-    if message_text:
+    if event.is_text_message:
+        message_text = message.get("text")
         page.send(sender_id, 'ini pesan kamu: %s' % message_text)
         # send_message(sender_id, message_text)
-    elif message_attachments:
+    elif event.is_attachment_message:
+        message_attachments = message.get("attachments")
         page.send(sender_id, "Message with attachment received")
 
 
@@ -126,5 +120,72 @@ def received_postback(event):
 
     log.info("Received postback for user %s and page %s with payload '%s' at %s"
              % (sender_id, recipient_id, payload, time_of_postback))
+
+    def coffee_menu(payload):
+
+        if 'CAPPUCCINO_PAYLOAD' in payload:
+            postback = {
+                'type': 'template',
+                'payload': {
+                  'template_type': 'generic',
+                  'elements': [{
+                    'title': 'Cappuccino Coffee',
+                    'subtitle': 'Sejarah Cappuccino',
+                    'item_url': 'https://majalah.ottencoffee.co.id/sejarah-cappuccino/',
+                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2015/11/DSCF6342.jpg',
+                    'buttons': [{
+                      'type': 'web_url',
+                      'url': "https://majalah.ottencoffee.co.id/sejarah-cappuccino/",
+                      'title': "Selengkapnya"
+                    }],
+                  }]
+                }
+              }
+            page.send(sender_id, postback)
+            return
+
+        if 'LATTE_PAYLOAD' in payload:
+            postback = {
+                'type': 'template',
+                'payload': {
+                  'template_type': 'generic',
+                  'elements': [{
+                    'title': 'Latte Coffee',
+                    'subtitle': 'mencerup sejarah di cafe kok tong siantar',
+                    'item_url': 'https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/',
+                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2016/12/kedai-kopi-kok-tong-siantar.jpg',
+                    'buttons': [{
+                      'type': 'web_url',
+                      'url': "https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/",
+                      'title': "Selengkapnya"
+                    }],
+                  }]
+                }
+              }
+            page.send(sender_id, postback)
+            return
+
+        if 'MOCHACCINO_PAYLOAD' in payload:
+            postback = {
+                'type': 'template',
+                'payload': {
+                  'template_type': 'generic',
+                  'elements': [{
+                    'title': 'Mocha Coffee',
+                    'subtitle': 'Lebih suka espresso atau filter',
+                    'item_url': 'https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/',
+                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2017/07/public-espresso-yeahbuffalo-007.jpg',
+                    'buttons': [{
+                      'type': 'web_url',
+                      'url': "https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/",
+                      'title': "Selengkapnya"
+                    }],
+                  }]
+                }
+              }
+            page.send(sender_id, postback)
+            return
+
+    coffee_menu(payload)
 
     page.send(sender_id, "Postback called")

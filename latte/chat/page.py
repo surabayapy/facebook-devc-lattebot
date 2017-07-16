@@ -161,6 +161,11 @@ class Page(object):
                 'text': text
             }
 
+        if attachment:
+            message = {
+                'attachment': attachment
+            }
+
         payload = {
             'recipient': {
                 'id': int(recipient_id)
