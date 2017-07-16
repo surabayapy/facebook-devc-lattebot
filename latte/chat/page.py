@@ -85,10 +85,10 @@ class Page(object):
             raise ValueError('greeting text pesan harus string')
 
         self._send_profile_settings(json.dumps({
-            'greeting': {
+            'greeting': [{
                 'locale': 'default',
                 'text': text
-            }
+            }]
         }))
 
     def show_starting_button(self, payload):
