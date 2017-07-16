@@ -38,7 +38,7 @@ def validate(_):
         print("Validating webhook")
 
         response.status_code = 200
-        return _.params.get('hub.challenge', '')
+        return int(_.params.get('hub.challenge', ''))
     else:
         return 'Failed validation. Make sure the validation tokens match.'
 
