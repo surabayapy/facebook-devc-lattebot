@@ -27,41 +27,31 @@ page.greeting('Hai {{user_first_name}}, bagaimana kabar kamu?!. Mau tau tentang 
 page.show_starting_button('USER_DEFINED_PAYLOAD')
 page.show_persistent_menu([
     {
-        "locale": "default",
-        "composer_input_disabled": False,
+        "title": "My Account",
+        "type": "nested",
         "call_to_actions": [
             {
-                "title": "My Account",
-                "type": "nested",
-                "call_to_actions": [
-                    {
-                        "title": "Pay Bill",
-                        "type": "postback",
-                        "payload": "PAYBILL_PAYLOAD"
-                    },
-                    {
-                        "title": "History",
-                        "type": "postback",
-                        "payload": "HISTORY_PAYLOAD"
-                    },
-                    {
-                        "title": "Contact Info",
-                        "type": "postback",
-                        "payload": "CONTACT_INFO_PAYLOAD"
-                    }
-                ]
+                "title": "Pay Bill",
+                "type": "postback",
+                "payload": "PAYBILL_PAYLOAD"
             },
             {
-                "type": "web_url",
-                "title": "Latest News",
-                "url": "http://petershats.parseapp.com/hat-news",
-                "webview_height_ratio": "full"
+                "title": "History",
+                "type": "postback",
+                "payload": "HISTORY_PAYLOAD"
+            },
+            {
+                "title": "Contact Info",
+                "type": "postback",
+                "payload": "CONTACT_INFO_PAYLOAD"
             }
         ]
     },
     {
-        "locale": "zh_CN",
-        "composer_input_disabled": False
+        "type": "web_url",
+        "title": "Latest News",
+        "url": "http://petershats.parseapp.com/hat-news",
+        "webview_height_ratio": "full"
     }
 ])
 

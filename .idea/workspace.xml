@@ -26,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/latte/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
               <folding>
                 <element signature="e#215#258#0" expanded="true" />
               </folding>
@@ -37,8 +37,8 @@
       <file leaf-file-name="page.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/latte/chat/page.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50769234">
-              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.5948718">
+              <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
               <folding>
                 <element signature="e#211#246#0" expanded="true" />
               </folding>
@@ -608,7 +608,7 @@
     <entry file="file://$PROJECT_DIR$/latte/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding>
             <element signature="e#215#258#0" expanded="true" />
           </folding>
@@ -617,8 +617,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/latte/chat/page.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50769234">
-          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.5948718">
+          <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
           <folding>
             <element signature="e#211#246#0" expanded="true" />
           </folding>

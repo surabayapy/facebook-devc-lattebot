@@ -114,7 +114,7 @@ class Page(object):
 
         self._send_profile_settings(json.dumps({
             "locale": "default",
-            "composer_input_disabled": True,
+            "composer_input_disabled": False,
             "call_to_actions": buttons
         }))
 
