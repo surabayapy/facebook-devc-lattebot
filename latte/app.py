@@ -50,7 +50,9 @@ def webhook(_):
     log.info(_.json_body)
     log.info(_.body)
     log.info(_.json)
-    # page.handle_webhook()
+
+    page.handle_webhook(_.json, received_message)
+
     response = _.response
     response.status_code = 200
 
@@ -58,3 +60,13 @@ def webhook(_):
 
 
 app.scan()
+
+
+def received_message(event):
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    time_of_message = event.timestamp
+    message = event.message
+    log.info("Received message for user %s and page %s at %s with message:"
+             % (sender_id, recipient_id, time_of_message))
+    log.info(message)

@@ -151,7 +151,11 @@ class Page(object):
         return json.loads(r.text)
 
     def handle_webhook(self, payload, message_callback=None, postback_callback=None):
-        _data = json.loads(payload)
+
+        _data = payload
+
+        if type(payload) is not object and isinstance(payload, str):
+            _data = json.loads(payload)
 
         # Memastikan Page sudah di subscribe
         if _data.get('object') != 'page':
