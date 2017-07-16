@@ -19,7 +19,7 @@ settings = {
     ]
 }
 
-app = Baka(__name__)
+app = Baka(__name__, **settings)
 
 
 @app.route('/')
@@ -30,11 +30,14 @@ def index(_):
 
 @app.route('/chat')
 def validate(_):
-    if _.params.get('hub.mode', '') == 'subscribe' and \
-                    _.params.get('hub.verify_token', '') == app.config.settings['verify_token']:
+    response = _.response
+    settings = app.config.registry.settings
+    if _.params.get('hub.mode', '') == 'subscribe' and _.params.get('hub.verify_token', '') \
+            == settings.get('verify_token'):
 
         print("Validating webhook")
 
+        response.status_code = 200
         return _.params.get('hub.challenge', '')
     else:
         return 'Failed validation. Make sure the validation tokens match.'
