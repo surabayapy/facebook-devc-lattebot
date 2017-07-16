@@ -157,7 +157,7 @@ class Page(object):
         attachment = message if not text else None
 
         if text:
-            _message = {
+            message = {
                 'text': text
             }
 
@@ -165,7 +165,7 @@ class Page(object):
             'recipient': {
                 'id': int(recipient_id)
             },
-            'message': _message
+            'message': message
         }
 
         return self._send(payload, callback=callback)
@@ -178,10 +178,10 @@ class Page(object):
 
         log.info(payload)
 
-        r = Api.post('https://graph.facebook.com/v2.6/me/messages',
-                     params={'access_token': self.access_token},
-                     data=payload,
-                     headers=HEADERS)
+        r = Api.route('post', 'https://graph.facebook.com/v2.6/me/messages',
+                      params={'access_token': self.access_token},
+                      data=json.dumps(payload),
+                      headers=HEADERS)
 
         if r.status_code != OK:
             log.error(r.text)
