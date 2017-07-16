@@ -98,7 +98,7 @@ class Page(object):
             'get_started': [{'payload': payload}]
         }))
         self._send_profile_settings(json.dumps({
-            'get_started': [{'payload': payload}]
+            'get_started': {'payload': payload}
         }))
 
     def hide_starting_button(self):
