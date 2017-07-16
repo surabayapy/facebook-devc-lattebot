@@ -156,11 +156,16 @@ class Page(object):
 
         attachment = message if not text else None
 
+        if text:
+            _message = {
+                'text': text
+            }
+
         payload = {
             'recipient': {
                 'id': recipient_id
             },
-            'message': text
+            'message': _message
         }
 
         return self._send(payload, callback=callback)
