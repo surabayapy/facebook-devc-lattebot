@@ -102,7 +102,19 @@ def received_message(event):
              % (sender_id, recipient_id, time_of_message))
     log.info(message)
 
-    page.send(sender_id, 'ini pesan kamu: %s' % message)
+    seq = message.get("seq", 0)
+    message_id = message.get("mid")
+    app_id = message.get("app_id")
+    metadata = message.get("metadata")
+
+    message_text = message.get("text")
+    message_attachments = message.get("attachments")
+
+    if message_text:
+        page.send(sender_id, 'ini pesan kamu: %s' % message_text)
+        # send_message(sender_id, message_text)
+    elif message_attachments:
+        page.send(sender_id, "Message with attachment received")
 
 
 def received_postback(event):
