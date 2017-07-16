@@ -23,6 +23,47 @@ app = Baka(__name__, **settings)
 settings = app.config.registry.settings
 
 page = Page(settings.get('access_token'))
+page.greeting('Hai {{user_first_name}}, bagaimana kabar kamu?!. Mau tau tentang Surabaya.py')
+page.show_starting_button('GET_STARTED_BOT')
+page.show_persistent_menu([
+    {
+        "locale": "default",
+        "composer_input_disabled": False,
+        "call_to_actions": [
+            {
+                "title": "My Account",
+                "type": "nested",
+                "call_to_actions": [
+                    {
+                        "title": "Pay Bill",
+                        "type": "postback",
+                        "payload": "PAYBILL_PAYLOAD"
+                    },
+                    {
+                        "title": "History",
+                        "type": "postback",
+                        "payload": "HISTORY_PAYLOAD"
+                    },
+                    {
+                        "title": "Contact Info",
+                        "type": "postback",
+                        "payload": "CONTACT_INFO_PAYLOAD"
+                    }
+                ]
+            },
+            {
+                "type": "web_url",
+                "title": "Latest News",
+                "url": "http://petershats.parseapp.com/hat-news",
+                "webview_height_ratio": "full"
+            }
+        ]
+    },
+    {
+        "locale": "zh_CN",
+        "composer_input_disabled": False
+    }
+])
 
 
 @app.route('/')
@@ -51,7 +92,7 @@ def webhook(_):
     log.info(_.body)
     log.info(_.json)
 
-    page.handle_webhook(_.json, received_message)
+    page.handle_webhook(_.json, received_message, received_postback)
 
     response = _.response
     response.status_code = 200
@@ -70,3 +111,18 @@ def received_message(event):
     log.info("Received message for user %s and page %s at %s with message:"
              % (sender_id, recipient_id, time_of_message))
     log.info(message)
+
+    page.send(sender_id, 'ok dari kami')
+
+
+def received_postback(event):
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    time_of_postback = event.timestamp
+
+    payload = event.postback_payload
+
+    log.info("Received postback for user %s and page %s with payload '%s' at %s"
+             % (sender_id, recipient_id, payload, time_of_postback))
+
+    page.send(sender_id, "Postback called")

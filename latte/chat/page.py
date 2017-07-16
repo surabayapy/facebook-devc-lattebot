@@ -11,6 +11,7 @@
 """
 from collections import OrderedDict
 import json
+import sys
 from baka import log
 from .event import Event
 from ..util import Api, to_json
@@ -130,12 +131,45 @@ class Page(object):
     handle webhook messaging
     """
 
+    def send(self, recipient_id, message, callback=None):
+        """
+            text
+            message = {
+                'text': 'text message'
+            }
+            attachment
+            message = {
+                'attachment': {
+                    'type': 'template',
+                    'payload': {}
+                }
+            }
+        """
+        if sys.version_info >= (3, 0):
+            text = message if isinstance(message, str) else None
+        else:
+            text = message if isinstance(message, str) else \
+                message.encode('utf-8') if isinstance(message, unicode) else None
+
+        attachment = message if not text else None
+
+        payload = {
+            'recipient': {
+                'id': recipient_id
+            },
+            'message': text
+        }
+
+        return self._send(payload, callback=callback)
+
     def _send(self, payload, callback=None):
         assert type(payload) == dict, 'tipe payload harus dict'
 
         if type(payload) == object:
             payload = to_json(payload)
 
+        log.info(payload)
+        """
         r = Api.post('https://graph.facebook.com/v2.6/me/messages',
                      params={'access_token': self.access_token},
                      data=payload,
@@ -149,6 +183,7 @@ class Page(object):
             callback(payload, r)
 
         return json.loads(r.text)
+        """
 
     def handle_webhook(self, payload, message_callback=None, postback_callback=None):
 
