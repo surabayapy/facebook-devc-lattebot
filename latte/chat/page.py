@@ -163,7 +163,7 @@ class Page(object):
 
         payload = {
             'recipient': {
-                'id': recipient_id
+                'id': int(recipient_id)
             },
             'message': _message
         }
