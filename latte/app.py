@@ -47,7 +47,9 @@ def validate(_):
 
 @app.route('/chat', request_method='POST')
 def webhook(_):
-    log.info(_.params)
+    log.info(_.json_body)
+    log.info(_.body)
+    log.info(_.json)
     # page.handle_webhook()
     response = _.response
     response.status_code = 200
