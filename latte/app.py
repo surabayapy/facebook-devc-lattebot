@@ -111,10 +111,10 @@ def received_message(event):
     message_attachments = message.get("attachments")
 
     if message_text:
-        page.send(sender_id, 'ini pesan kamu: %s' % message_text)
+        page.send(sender_id, {'text': 'ini pesan kamu: %s' % message_text})
         # send_message(sender_id, message_text)
     elif message_attachments:
-        page.send(sender_id, "Message with attachment received")
+        page.send(sender_id, {'text': "Message with attachment received"})
 
 
 def received_postback(event):
@@ -126,5 +126,5 @@ def received_postback(event):
 
     log.info("Received postback for user %s and page %s with payload '%s' at %s"
              % (sender_id, recipient_id, payload, time_of_postback))
-
-    page.send(sender_id, "Postback called")
+    # text
+    page.send(sender_id, {'text': 'PostBack Callback'})
