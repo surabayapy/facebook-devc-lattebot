@@ -102,7 +102,7 @@ def received_message(event):
              % (sender_id, recipient_id, time_of_message))
     log.info(message)
 
-    page.send(sender_id, 'ok dari kami')
+    page.send(sender_id, 'ini pesan kamu: %s' % message)
 
 
 def received_postback(event):

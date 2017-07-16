@@ -172,7 +172,7 @@ class Page(object):
             payload = to_json(payload)
 
         log.info(payload)
-        """
+
         r = Api.post('https://graph.facebook.com/v2.6/me/messages',
                      params={'access_token': self.access_token},
                      data=payload,
@@ -186,7 +186,6 @@ class Page(object):
             callback(payload, r)
 
         return json.loads(r.text)
-        """
 
     def handle_webhook(self, payload, message_callback=None, postback_callback=None):
 
