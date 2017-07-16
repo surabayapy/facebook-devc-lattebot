@@ -10,7 +10,7 @@
     app.py
 """
 from baka import Baka, log, settings as ENV
-
+from .chat.page import Page
 
 settings = {
     'env': [
@@ -20,6 +20,9 @@ settings = {
 }
 
 app = Baka(__name__, **settings)
+settings = app.config.registry.settings
+
+page = Page(settings.get('access_token'))
 
 
 @app.route('/')
@@ -31,7 +34,6 @@ def index(_):
 @app.route('/chat')
 def validate(_):
     response = _.response
-    settings = app.config.registry.settings
     if _.params.get('hub.mode', '') == 'subscribe' and _.params.get('hub.verify_token', '') \
             == settings.get('verify_token'):
 
@@ -45,7 +47,8 @@ def validate(_):
 
 @app.route('/chat', request_method='POST')
 def webhook(_):
-
+    log.info(_.params)
+    # page.handle_webhook()
     response = _.response
     response.status_code = 200
 
