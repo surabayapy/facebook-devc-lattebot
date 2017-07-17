@@ -122,7 +122,7 @@ def received_postback(event):
              % (sender_id, recipient_id, payload, time_of_postback))
 
     if 'USER_DEFINED_PAYLOAD' in payload:
-        # ambil data profile user
+        # Ambil data profile user
         """
         {
             first_name: 'First name',
@@ -141,9 +141,9 @@ def received_postback(event):
             user['first_name'], user['last_name']))
         return
 
-    def coffee_menu(payload):
+    def coffee_menu(_payload_):
 
-        if 'CAPPUCCINO_PAYLOAD' in payload:
+        if 'CAPPUCCINO_PAYLOAD' in _payload_:
             postback = {
                 'type': 'template',
                 'payload': {
@@ -164,7 +164,7 @@ def received_postback(event):
             page.send(sender_id, postback)
             return
 
-        if 'LATTE_PAYLOAD' in payload:
+        if 'LATTE_PAYLOAD' in _payload_:
             postback = {
                 'type': 'template',
                 'payload': {
@@ -185,7 +185,7 @@ def received_postback(event):
             page.send(sender_id, postback)
             return
 
-        if 'MOCHACCINO_PAYLOAD' in payload:
+        if 'MOCHACCINO_PAYLOAD' in _payload_:
             postback = {
                 'type': 'template',
                 'payload': {

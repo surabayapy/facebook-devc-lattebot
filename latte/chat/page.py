@@ -14,7 +14,7 @@ import json
 import sys
 from baka import log
 from .event import Event
-from ..util import Api, to_json
+from .util import Api, to_json
 
 HEADERS = {'Content-type': 'application/json'}
 OK = 200
