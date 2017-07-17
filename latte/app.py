@@ -49,8 +49,8 @@ page.show_persistent_menu([
     },
     {
         "type": "web_url",
-        "title": "Latest News",
-        "url": "http://petershats.parseapp.com/hat-news",
+        "title": "WE ARE HIRING!",
+        "url": "https://pinjam.co.id/perusahaan/karier",
         "webview_height_ratio": "full"
     }
 ])
@@ -78,9 +78,9 @@ def validate(_):
 
 @app.route('/chat', request_method='POST')
 def webhook(_):
-    log.info(_.json_body)
-    log.info(_.body)
-    log.info(_.json)
+    # log.info(_.json_body)
+    # log.info(_.body)
+    # log.info(_.json)
 
     page.handle_webhook(_.json, received_message, received_postback)
 
@@ -187,5 +187,4 @@ def received_postback(event):
             return
 
     coffee_menu(payload)
-
     page.send(sender_id, "Postback called")
