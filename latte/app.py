@@ -137,7 +137,8 @@ def received_postback(event):
         """
         user = page.get_user_profile(sender_id)
 
-        page.send(sender_id, 'hi {}, selamat bergabung dengan kami Surabaya.py'.format(user['first_name']))
+        page.send(sender_id, 'Hi {} {}, Selamat bergabung dengan kami Surabaya.py'.format(
+            user['first_name'], user['last_name']))
         return
 
     def coffee_menu(payload):
@@ -146,20 +147,20 @@ def received_postback(event):
             postback = {
                 'type': 'template',
                 'payload': {
-                  'template_type': 'generic',
-                  'elements': [{
-                    'title': 'Cappuccino Coffee',
-                    'subtitle': 'Sejarah Cappuccino',
-                    'item_url': 'https://majalah.ottencoffee.co.id/sejarah-cappuccino/',
-                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2015/11/DSCF6342.jpg',
-                    'buttons': [{
-                      'type': 'web_url',
-                      'url': "https://majalah.ottencoffee.co.id/sejarah-cappuccino/",
-                      'title': "Selengkapnya"
-                    }],
-                  }]
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Cappuccino Coffee',
+                        'subtitle': 'Sejarah Cappuccino',
+                        'item_url': 'https://majalah.ottencoffee.co.id/sejarah-cappuccino/',
+                        'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2015/11/DSCF6342.jpg',
+                        'buttons': [{
+                            'type': 'web_url',
+                            'url': "https://majalah.ottencoffee.co.id/sejarah-cappuccino/",
+                            'title': "Selengkapnya"
+                        }],
+                    }]
                 }
-              }
+            }
             page.send(sender_id, postback)
             return
 
@@ -167,20 +168,20 @@ def received_postback(event):
             postback = {
                 'type': 'template',
                 'payload': {
-                  'template_type': 'generic',
-                  'elements': [{
-                    'title': 'Latte Coffee',
-                    'subtitle': 'mencerup sejarah di cafe kok tong siantar',
-                    'item_url': 'https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/',
-                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2016/12/kedai-kopi-kok-tong-siantar.jpg',
-                    'buttons': [{
-                      'type': 'web_url',
-                      'url': "https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/",
-                      'title': "Selengkapnya"
-                    }],
-                  }]
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Latte Coffee',
+                        'subtitle': 'mencerup sejarah di cafe kok tong siantar',
+                        'item_url': 'https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/',
+                        'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2016/12/kedai-kopi-kok-tong-siantar.jpg',
+                        'buttons': [{
+                            'type': 'web_url',
+                            'url': "https://majalah.ottencoffee.co.id/mencerup-sejarah-di-cafe-kok-tong-siantar/",
+                            'title': "Selengkapnya"
+                        }],
+                    }]
                 }
-              }
+            }
             page.send(sender_id, postback)
             return
 
@@ -188,20 +189,20 @@ def received_postback(event):
             postback = {
                 'type': 'template',
                 'payload': {
-                  'template_type': 'generic',
-                  'elements': [{
-                    'title': 'Mocha Coffee',
-                    'subtitle': 'Lebih suka espresso atau filter',
-                    'item_url': 'https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/',
-                    'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2017/07/public-espresso-yeahbuffalo-007.jpg',
-                    'buttons': [{
-                      'type': 'web_url',
-                      'url': "https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/",
-                      'title': "Selengkapnya"
-                    }],
-                  }]
+                    'template_type': 'generic',
+                    'elements': [{
+                        'title': 'Mocha Coffee',
+                        'subtitle': 'Lebih suka espresso atau filter',
+                        'item_url': 'https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/',
+                        'image_url': 'https://majalah.ottencoffee.co.id/wp-content/uploads/2017/07/public-espresso-yeahbuffalo-007.jpg',
+                        'buttons': [{
+                            'type': 'web_url',
+                            'url': "https://majalah.ottencoffee.co.id/kamu-lebih-suka-espresso-atau-filter-coffee/",
+                            'title': "Selengkapnya"
+                        }],
+                    }]
                 }
-              }
+            }
             page.send(sender_id, postback)
             return
 
