@@ -121,6 +121,25 @@ def received_postback(event):
     log.info("Received postback for user %s and page %s with payload '%s' at %s"
              % (sender_id, recipient_id, payload, time_of_postback))
 
+    if 'USER_DEFINED_PAYLOAD' in payload:
+        # ambil data profile user
+        """
+        {
+            first_name: 'First name',
+            last_name: 'Last name',
+            profile_pic: 'Profile picture',
+            locale: 'Locale of the user on Facebook',
+            timezone: 'Timezone, number relative to GMT',
+            gender: 'Gender',
+            is_payment_enabled: 'Is the user eligible to receive messenger platform payment messages',
+            last_ad_referral: 'Details of the last Messenger Conversation Ad user was referred from'
+        }
+        """
+        user = page.get_user_profile(sender_id)
+
+        page.send(sender_id, 'hi {}, selamat bergabung dengan kami Surabaya.py'.format(user['first_name']))
+        return
+
     def coffee_menu(payload):
 
         if 'CAPPUCCINO_PAYLOAD' in payload:
